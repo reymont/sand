@@ -47,6 +47,7 @@ str(g)
 # CHUNK 5
 plot(g)
 
+#无向图
 # CHUNK 6
 dg <- graph.formula(1-+2, 1-+3, 2++3)
 plot(dg)
@@ -64,6 +65,7 @@ str(dg)
 # CHUNK 8
 V(dg)$name <- c("Sam", "Mary", "Tom")
 
+#2.2.2 图的表示
 # CHUNK 9
 E(dg)
 # ---
@@ -75,6 +77,7 @@ E(dg)
 ## [4] Tom  -> Mary
 # ---
 
+#邻接矩阵
 # CHUNK 10
 get.adjacency(g)
 # ---
@@ -88,8 +91,15 @@ get.adjacency(g)
 ## 6 . . . 1 1 . 1
 ## 7 . . . 1 . 1 .
 # ---
+#获取邻接关系
+get.adjlist(g)
+#获取边关系
+get.edgelist(g)
 
+
+#2.2.3图的操作
 # CHUNK 11
+#子图
 h <- induced.subgraph(g, 1:5)
 str(h)
 # ---
@@ -99,6 +109,7 @@ str(h)
 ## [1] 1--2 1--3 2--3 2--4 3--5 4--5
 # ---
 
+#添加节点或删除节点
 # CHUNK 12
 h <- g - vertices(c(6,7))
 
@@ -111,6 +122,7 @@ h1 <- h
 h2 <- graph.formula(4-6, 4-7, 5-6, 6-7)
 g <- graph.union(h1,h2)
 
+#2.3.1 节点、边和图的属性
 # CHUNK 15
 V(dg)$name
 # ---
@@ -138,6 +150,7 @@ is.weighted(wg)
 # CHUNK 19
 g$name <- "Toy Graph"
 
+#2.3.2 使用数据框
 # CHUNK 20
 library(sand)
 g.lazega <- graph.data.frame(elist.lazega, 
@@ -145,6 +158,7 @@ g.lazega <- graph.data.frame(elist.lazega,
                               vertices=v.attr.lazega)
 g.lazega$name <- "Lazega Lawyers"
 
+#统计节点
 # CHUNK 21
 vcount(g.lazega)
 # ---
@@ -152,11 +166,13 @@ vcount(g.lazega)
 # ---
 
 # CHUNK 22
+#统计边
 ecount(g.lazega)
 # ---
 ## [1] 115
 # ---
 
+#属性列表
 # CHUNK 23
 list.vertex.attributes(g.lazega)
 # ---
@@ -165,6 +181,7 @@ list.vertex.attributes(g.lazega)
 ## [9] "School"
 # ---
 
+#2.4.1 图的基本概念
 # CHUNK 24
 is.simple(g)
 # ---
@@ -191,6 +208,7 @@ is.simple(mg)
 ## [1] FALSE
 # ---
 
+#加权图
 # CHUNK 26
 E(mg)$weight <- 1
 wg2 <- simplify(mg)
@@ -227,6 +245,7 @@ neighbors(g,5)
 ## [1] 3 4 6
 # ---
 
+#度
 # CHUNK 30
 degree(g)
 # ---
@@ -246,6 +265,7 @@ degree(dg, mode="out")
 ##    2    1    1
 # ---
 
+#连通性
 # CHUNK 32
 is.connected(g)
 # ---
@@ -265,6 +285,7 @@ clusters(g)
 ## [1] 1
 # ---
 
+#弱连通，强连通
 # CHUNK 34
 is.connected(dg, mode="weak")
 # ---
